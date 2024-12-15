@@ -1,13 +1,84 @@
-﻿<Page x:Class="Client.View.Map"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Client.View"
-      mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Map">
+<Window x:Class="WPFMapApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:g="clr-namespace:GMap.NET.WindowsPresentation;assembly=GMap.NET.WindowsPresentation"
+        Title="District Map" Height="700" Width="800">
     <Grid>
-        <TextBlock Text="Map Page" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+        <!-- Bản đồ -->
+        <g:GMapControl Name="MapControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+        <!-- Khung hiển thị thông tin -->
+        <Border Name="InfoBorder" BorderBrush="Gray" BorderThickness="2"
+                Background="#F8F9FA" Padding="20" CornerRadius="8" 
+                VerticalAlignment="Center" HorizontalAlignment="Center" 
+                Visibility="Collapsed" Width="450" Height="400">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Tiêu đề -->
+                <Border Background="#3498DB" CornerRadius="5" Padding="8" Margin="0,0,0,15">
+                    <TextBlock Name="InfoTitle" FontSize="20" FontWeight="Bold" Foreground="White" 
+                               TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" />
+                </Border>
+
+                <!-- Grid hiển thị thông tin 2 cột -->
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Cột 1 -->
+                    <StackPanel Grid.Column="0" Margin="0,0,15,0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/temperature.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoTemperature" FontSize="16" Foreground="#E74C3C" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/aqi.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoAQI" FontSize="16" Foreground="#3498DB" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/pressure.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoPressure" FontSize="16" Foreground="#8E44AD" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/humidity.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoHumidity" FontSize="16" Foreground="#1ABC9C" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+
+                    <!-- Cột 2 -->
+                    <StackPanel Grid.Column="1" Margin="15,0,0,0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/no2.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoNO2" FontSize="16" Foreground="#16A085" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/co2.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoCO" FontSize="16" Foreground="#C0392B" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/so2.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoSO2" FontSize="16" Foreground="#F39C12" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,10" HorizontalAlignment="Center">
+                            <Image Source="pack://application:,,,/Assets/pm-25.png" Width="24" Height="24" Margin="0,0,8,0" />
+                            <TextBlock Name="InfoPM25" FontSize="16" Foreground="#2980B9" TextWrapping="Wrap" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Nút đóng -->
+                <Button Content="Close" Click="CloseButton_Click" Margin="0,20,0,0" 
+                        HorizontalAlignment="Center" Width="100" Height="35" 
+                        Background="#34495E" Foreground="White" BorderThickness="0" 
+                        FontWeight="Bold" Cursor="Hand" />
+            </StackPanel>
+        </Border>
     </Grid>
-</Page>
+</Window>
